@@ -13,12 +13,12 @@
 // example: https://sitandr.github.io/typst-examples-book/book/packages/wrapping.html
 #import "@preview/wrap-it:0.1.1": wrap-content
 
-// 様式の分だけ上に余白を入れる
+// 様式の分だけ上に余白を入れる（目分量で合わせた）
 #let top-margins = (
-  "1": 8em,
-  "2": 14.6em,
-  "4": 12em,
-  "5": 4.4em,
+  "1": 84pt,
+  "2": 153pt,
+  "4": 126pt,
+  "5": 46pt,
 )
 #let section-start(page-n) = {
   v(top-margins.at(str(page-n)))
