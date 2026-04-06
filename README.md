@@ -1,6 +1,6 @@
-# typst-dc
+# Gakushin-DC-Typst
 
-日本学術振興会 特別研究員-DC の申請書を [Typst](https://typst.app/) で作成するためのテンプレート。
+2026年春に申請する日本学術振興会 特別研究員-DCの申請書を Typst で作成するためのテンプレート。
 
 ## ファイル構成
 
@@ -57,7 +57,7 @@ typst compile main-dc.typ
 **見出し**（`theme-dc.typ` の `show heading` 部分）:
 
 ```typst
-// 【】で括る（デフォルト）
+// 【】で括る
 [#h(-1em)【#it.body】]
 
 // グレーでハイライト
@@ -93,6 +93,9 @@ typst compile main-dc.typ
 ## 参考文献
 
 未実装。通常の `#bibliography` のほか、複数のbibファイルを扱える [alexandria](https://typst.app/universe/package/alexandria/) が使えるかもしれない。
+
+## 免責事項
+本テンプレートは非公式のものであり、作成者はその正確性・完全性を保証しません。申請書の体裁や提出要件については必ずJSPSの公式案内を確認してください。本テンプレートの使用によって生じたいかなる不利益についても、作成者は責任を負いません。
 
 ## Typst 参考リンク
 
