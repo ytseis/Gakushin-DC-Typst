@@ -97,6 +97,10 @@ typst compile main-dc.typ
 ## 免責事項
 本テンプレートは非公式のものであり、作成者はその正確性・完全性を保証しません。申請書の体裁や提出要件については必ずJSPSの公式案内を確認してください。本テンプレートの使用によって生じたいかなる不利益についても、作成者は責任を負いません。
 
+## 使えそうなパッケージ（未検証）
+- Figureの挿入: https://typst.app/universe/package/meander
+- リスト: https://typst.app/universe/package/efilrst/
+
 ## Typst 参考リンク
 
 - [Typst 日本語ドキュメント](https://typst-jp.github.io/docs/)
