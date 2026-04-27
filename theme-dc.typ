@@ -41,11 +41,16 @@
   // v(-.6em)+[#h(-1em)【#title】]
 }
 
+// 和文と欧文のフォントを別々に指定する→showするとheadingもmainに統一されてしまった。
+// reference: https://zenn.dev/mkpoli/articles/6234c1d2a595bd
+
 // ===== theme =====
 #let dc-theme(
   me: [申請 太郎],
   font-main: "BIZ UDPMincho",
+  font-heading: "BIZ UDPGothic",
   font-caption: "BIZ UDPGothic",
+  font-math: "Noto Serif Math",
   font-size: 10.5pt,
   leading: .6em,
   spacing: .6em,
@@ -53,14 +58,27 @@
 ) = {
   // 見出し
   set heading(bookmarked: false)
+
   show heading: it => {
-    set text(font: font-main, size: font-size, weight: "bold")
+    set text(font: font-heading, size: font-size, weight: "bold")
 
     // 【】で括る
-    [#h(-1em)【#it.body】]
+    if it.level == 2 {
+      [#h(-1em)【#it.body】]
+    } else if it.level == 3 {
+      v(-.8em)
+      rect(it, fill: gray.transparentize(60%), inset: .2em)
+      v(-.1em)
+    }
+
 
     // グレーでハイライト
     // v(-.6em)+rect(it, fill: gray.transparentize(60%), inset: .2em)
+  }
+
+  show emph: it => {
+    set text(weight: "bold", style: "normal")
+    underline(it.body, offset: .1em)
   }
 
   // footer: 申請者登録名
@@ -70,9 +88,13 @@
 
   // background: 様式を貼り付ける
   let background = context {
-    let n = counter(page).get().first()  // 0始まり
+    let n = counter(page).get().first() // 0始まり
     image("2_03_dc_naiyo.pdf", page: n)
   }
+
+  // 句読点
+  show "、": "，"
+  show "。": "。"
 
   // page
   set page(
@@ -88,6 +110,8 @@
     size: font-size,
     lang: "ja",
   )
+
+  show math.equation: set text(font: font-math)
 
   // par
   set par(
@@ -108,7 +132,6 @@
   }
 
   show: cjk-spacer
-
 
   body
 }
