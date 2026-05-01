@@ -97,6 +97,8 @@ typst compile main-dc.typ
 
 以下のようにすると、リスト形式ではなく横に並べて表示できる。`theme-dc.typ` へはまだ実装していないので、適宜 `main-dc.typ` へ追加してください。
 
+参考: [How to print bibliography without line breaks between references - Questions - Typst Forum](https://forum.typst.app/t/how-to-print-bibliography-without-line-breaks-between-references/4419)
+
 ```typst
 #import "@preview/alexandria:0.2.2": *
 #show: alexandria(prefix: "", read: path => read(path))
