@@ -2,6 +2,9 @@
 
 2026年春に申請する日本学術振興会 特別研究員-DCの申請書を Typst で作成するためのテンプレート。
 
+## 更新履歴
+- 2026-05-01 参考文献を更新。
+
 ## ファイル構成
 
 ```
@@ -92,7 +95,38 @@ typst compile main-dc.typ
 
 ## 参考文献
 
-未実装。通常の `#bibliography` のほか、複数のbibファイルを扱える [alexandria](https://typst.app/universe/package/alexandria/) が使えるかもしれない。
+以下のようにすると、リスト形式ではなく横に並べて表示できる。`theme-dc.typ` へはまだ実装していないので、適宜 `main-dc.typ` へ追加してください。
+
+```typst
+#import "@preview/alexandria:0.2.2": *
+#show: alexandria(prefix: "", read: path => read(path))
+
+#let bib = {
+  set text(size: 1em) // 入り切らない場合はフォントサイズを小さくする
+
+  // bibliographyは2列のgridなので、要素を横に並べる
+  show grid: g => {
+    let cells = g.children.map(cell => cell.body)
+    let pairs = range(0, cells.len(), step: 2).map(i =>
+      cells.at(i) + h(0.5em) + cells.at(i + 1)
+    )
+    pairs.join(h(1em))
+  }
+
+  [文献]
+  bibliographyx(
+    "references.bib",
+    prefix: "",
+    title: "",
+    style: "ieee.csl",
+  )
+}
+
+// 本文中
+#line(length: 100%)
+#h(-1em)
+#bib
+```
 
 ## 免責事項
 本テンプレートは非公式のものであり、作成者はその正確性・完全性を保証しません。申請書の体裁や提出要件については必ずJSPSの公式案内を確認してください。本テンプレートの使用によって生じたいかなる不利益についても、作成者は責任を負いません。
