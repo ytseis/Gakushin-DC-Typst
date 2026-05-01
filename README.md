@@ -120,7 +120,7 @@ typst compile main-dc.typ
     "references.bib",
     prefix: "",
     title: "",
-    style: "ieee.csl",
+    style: "ieee",
   )
 }
 
