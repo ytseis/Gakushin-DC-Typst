@@ -3,7 +3,8 @@
 2026年春に申請する日本学術振興会 特別研究員-DCの申請書を Typst で作成するための**非公式**テンプレート。
 
 ## 更新履歴
-- 2026-05-01 参考文献を更新。
+- 2026-05-01 「参考文献」を更新。
+- 2026-05-05 「参考文献を複数追加する」を追加。
 
 ## ファイル構成
 
@@ -128,6 +129,46 @@ typst compile main-dc.typ
 #line(length: 100%)
 #h(-1em)
 #bib
+```
+
+### 参考文献を複数追加する
+
+```typst
+#import "@preview/alexandria:0.2.2": *
+
+#show: alexandria(prefix: "x:", read: path => read(path))
+
+#load-bibliography("references.bib", prefix: "x:", style: "ieee.csl")
+
+#let bib-part(keys) = context {
+  set text(size: 8pt)
+
+  show grid: g => {
+    let cells = g.children.map(cell => cell.body)
+    let pairs = range(0, cells.len(), step: 2).map(i => cells.at(i) + h(0.5em) + cells.at(i + 1))
+    pairs.join(h(1em))
+  }
+
+  let bib = get-bibliography("x:")
+
+  line(length: 100%)
+  h(-1em)
+  render-bibliography(
+    title: none,
+    (
+      ..bib,
+      references: bib.references.filter(ref => ref.key in keys),
+    ),
+  )
+}
+
+本文1 @x:abc2020 @x:abc2021
+
+#bib-part(("abc2020", "abc2021"))
+
+本文2 @x:def2020 @x:def2021 @x:abc2020
+
+#bib-part(("def2020", "def2021"))
 ```
 
 ## 免責事項
