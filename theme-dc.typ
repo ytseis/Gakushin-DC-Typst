@@ -41,6 +41,18 @@
   // v(-.6em)+[#h(-1em)【#title】]
 }
 
+// highlight
+// cf: https://github.com/typst/typst/issues/2939; https://github.com/typst/typst/issues/5324
+#let hl(body, font: "BIZ UDPGothic", fill: black, text-fill: white, outset: .2em) = {
+  set text(fill: text-fill, font: font)
+
+  box(
+    fill: fill,
+    outset: outset,
+    body
+  )
+}
+
 // 和文と欧文のフォントを別々に指定する→showするとheadingもmainに統一されてしまった。
 // reference: https://zenn.dev/mkpoli/articles/6234c1d2a595bd
 
@@ -56,29 +68,47 @@
   spacing: .6em,
   body,
 ) = {
-  // 見出し
+  // 見出しのしおりを作成しない
   set heading(bookmarked: false)
 
+  // 見出しのスタイル
   show heading: it => {
     set text(font: font-heading, size: font-size, weight: "bold")
 
-    // 【】で括る
     if it.level == 2 {
-      [#h(-1em)【#it.body】]
+      // 【】で囲む
+      // [#h(-1em)【#it.body】]
+
+      // 白文字、黒ハイライト
+      v(.1em)
+      h(-1em + .1em)
+      hl(
+        text(fill: white, size: 1em, weight: "semibold", font: font-heading, it.body),
+        font: font-heading,
+        fill: black,
+        text-fill: white,
+        outset: (x: .1em, y: .2em),
+      )
+      v(.1em)
     } else if it.level == 3 {
-      v(-.8em)
-      rect(it, fill: gray.transparentize(60%), inset: .2em)
-      v(-.1em)
+      // グレーハイライト
+      v(.1em)
+      h(-1em + .1em)
+      hl(
+        it.body,
+        fill: gray.transparentize(50%),
+        text-fill: black,
+        font: font-heading,
+        outset: (x: .1em, y: .2em),
+      )
+      v(.1em)
     }
-
-
-    // グレーでハイライト
-    // v(-.6em)+rect(it, fill: gray.transparentize(60%), inset: .2em)
   }
 
-  show emph: it => {
-    set text(weight: "bold", style: "normal")
-    underline(it.body, offset: .1em)
+  // *強調*
+  show strong: it => {
+    set text(weight: "semibold", style: "normal", font: font-strong)
+    underline(it.body)
   }
 
   // footer: 申請者登録名
