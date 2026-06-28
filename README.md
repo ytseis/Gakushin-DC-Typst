@@ -6,6 +6,8 @@
 - 2026-05-01 「参考文献」を更新。
 - 2026-05-05 「参考文献を複数追加する」を追加。
 - 2026-05-07 heading のハイライトの `rect` を `box` に変更。強調の `_emph_` を `*strong*` に変更。
+- 2026-06-28 Typst 0.15から1つの文書の中に複数のbibliograhyを置けるようになったようです。
+  - https://typst.app/docs/reference/model/bibliography/#parameters-target
 
 ## ファイル構成
 
