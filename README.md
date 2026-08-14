@@ -177,9 +177,11 @@ typst compile main-dc.typ
 ## 免責事項
 本テンプレートは非公式のものであり、作成者はその正確性・完全性を保証しません。申請書の体裁や提出要件については必ずJSPSの公式案内を確認してください。本テンプレートの使用によって生じたいかなる不利益についても、作成者は責任を負いません。
 
-## 使えそうなパッケージ（未検証）
+## 使えそうなもの（未検証）
 - Figureの挿入: https://typst.app/universe/package/meander
 - リスト: https://typst.app/universe/package/efilrst/
+- 文献リストはfootnoteを使う方が綺麗に書けるかもしれない
+  - [Typstのスライドで使える小技](https://zenn.dev/ngoat_gg/articles/96e65c2522c527#%E8%84%9A%E6%B3%A8%E3%81%AB%E5%BC%95%E7%94%A8%E3%82%92%E6%9B%B8%E3%81%8F)
 
 ## Typst 参考リンク
 
